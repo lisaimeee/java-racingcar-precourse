@@ -24,19 +24,20 @@ public class CarTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new Car(여섯자리_이름, playTurns));
     }
 
-    @Test
-    void 자동차는_주어진_횟수동안_움직일_수_있다() {
+    @ParameterizedTest
+    @EnumSource(Movement.class)
+    void 자동차는_주어진_횟수동안_움직일_수_있다(Movement move) {
         String name = "name";
         int playTurns = 0;
         Car car = new Car(name, playTurns);
-        assertThatIllegalStateException().isThrownBy(car::play);
+        assertThatIllegalStateException().isThrownBy(() -> car.move(move));
     }
 
     @ParameterizedTest
     @EnumSource(Movement.class)
     void 자동차는_전진_또는_정지_할_수_있다(Movement move) {
         String name = "name";
-        int playTurns = 0;
+        int playTurns = 1;
         Car car = new Car(name, playTurns);
         car.move(move);
         assertThat(car.position()).isEqualTo(move.move());

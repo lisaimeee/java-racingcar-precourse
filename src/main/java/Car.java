@@ -29,13 +29,9 @@ public class Car {
         }
     }
 
-    public void play() {
+    public void move(Movement movement) {
         isAbleToPlay();
         playTurns--;
-        move(Movement.of(RandomNumber.random1To9Number()));
-    }
-
-    protected void move(Movement movement) {
         this.position += movement.move();
     }
 
@@ -49,4 +45,7 @@ public class Car {
         }
     }
 
+    public String name() {
+        return name;
+    }
 }
