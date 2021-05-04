@@ -30,10 +30,14 @@ public class PrintView {
     public static void printRaceResult(Cars cars) {
         String result = cars.racingCars()
                             .stream()
-                            .map(car -> car.name + NAME_POSITION_DELIMITER + formatPosition(car.position()))
+                            .map(PrintView::format)
                             .collect(Collectors.joining(NEW_LINE));
         System.out.println(result);
         System.out.println();
+    }
+
+    private static String format(Car car){
+        return car.name + NAME_POSITION_DELIMITER + formatPosition(car.position());
     }
 
     private static String formatPosition(int number) {
@@ -45,7 +49,10 @@ public class PrintView {
     }
 
     public static void printFinalWinner(Cars cars) {
-        String winners = cars.winners().stream().map(Car::name).collect(Collectors.joining(CAR_NAME_DELIMITER));
+        String winners = cars.winners()
+                             .stream()
+                             .map(Car::name)
+                             .collect(Collectors.joining(CAR_NAME_DELIMITER));
 
         System.out.println(winners + FINAL_WINNER_MESSAGE);
     }
