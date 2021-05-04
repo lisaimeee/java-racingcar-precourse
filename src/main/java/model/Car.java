@@ -50,4 +50,9 @@ public class Car {
     public String name() {
         return name;
     }
+
+    public boolean isWinner(int winnerPosition) {
+        return position == winnerPosition;
+    }
+
 }

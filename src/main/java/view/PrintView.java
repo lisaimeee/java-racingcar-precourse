@@ -3,8 +3,6 @@ package view;
 import model.Car;
 import model.Cars;
 
-import java.util.stream.Collectors;
-
 public class PrintView {
 
     public static final String RACE_RESULT = "\n실행결과";
@@ -28,12 +26,12 @@ public class PrintView {
     }
 
     public static void printRaceResult(Cars cars) {
-        String result = cars.racingCars()
-                            .stream()
-                            .map(PrintView::format)
-                            .collect(Collectors.joining(NEW_LINE));
-        System.out.println(result);
-        System.out.println();
+        StringBuilder result = new StringBuilder();
+        for(Car car : cars.racingCars()){
+            result.append(format(car))
+                  .append(NEW_LINE);
+        }
+        System.out.println(result.toString());
     }
 
     private static String format(Car car){
@@ -49,11 +47,12 @@ public class PrintView {
     }
 
     public static void printFinalWinner(Cars cars) {
-        String winners = cars.winners()
-                             .stream()
-                             .map(Car::name)
-                             .collect(Collectors.joining(CAR_NAME_DELIMITER));
-
+        StringBuilder result = new StringBuilder();
+        for (Car car : cars.winners()) {
+            result.append(car.name()).append(CAR_NAME_DELIMITER);
+        }
+        String winners = result.toString();
+        winners = winners.substring(0, winners.length() - 1);
         System.out.println(winners + FINAL_WINNER_MESSAGE);
     }
 }
