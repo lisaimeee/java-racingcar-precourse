@@ -8,19 +8,15 @@ public class Cars {
 
     public final String NAME_DELIMITER = ",";
 
-    private final int playTurns;
-
 
     private final List<Car> racingCars;
 
     public Cars(String names, int playTurns) {
         this.racingCars = createCars(names, playTurns);
-        this.playTurns = playTurns;
     }
 
-    protected Cars(List<Car> racingCars, int playTurns) {
+    protected Cars(List<Car> racingCars) {
         this.racingCars = racingCars;
-        this.playTurns = playTurns;
     }
 
     private List<Car> createCars(String names, int playTurns) {
@@ -30,9 +26,7 @@ public class Cars {
     }
 
     public void race() {
-        for (int i = 0; i < playTurns; i++) {
-            racingCars.forEach(Car::play);
-        }
+        racingCars.forEach(car -> car.move(Movement.of(RandomNumber.random1To9Number())));
     }
 
     public List<Car> racingCars() {

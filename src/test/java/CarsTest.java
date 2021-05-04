@@ -15,7 +15,7 @@ public class CarsTest {
         Car winner1 = new Car("win1", playTurns, 3);
         Car winner2 = new Car("win2", playTurns, 3);
         Car player1 = new Car("play1", playTurns, 0);
-        Cars cars = new Cars(Arrays.asList(winner1, winner2, player1), playTurns);
+        Cars cars = new Cars(Arrays.asList(winner1, winner2, player1));
         assertThat(cars.winners()).isNotEmpty().hasSize(2).contains(winner1, winner2);
     }
 
