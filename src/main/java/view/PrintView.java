@@ -1,3 +1,8 @@
+package view;
+
+import model.Car;
+import model.Cars;
+
 import java.util.stream.Collectors;
 
 public class PrintView {

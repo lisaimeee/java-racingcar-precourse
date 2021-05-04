@@ -1,3 +1,5 @@
+package model;
+
 public enum Movement {
     GO(1), STOP(0);
 
