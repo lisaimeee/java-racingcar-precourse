@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -27,5 +29,15 @@ public class CarTest {
         int playTurns = 0;
         Car car = new Car(name, playTurns);
         assertThatIllegalStateException().isThrownBy(car::play);
+    }
+
+    @ParameterizedTest
+    @EnumSource(Movement.class)
+    void 자동차는_전진_또는_정지_할_수_있다(Movement move) {
+        String name = "name";
+        int playTurns = 0;
+        Car car = new Car(name, playTurns);
+        car.move(move);
+        assertThat(car.position()).isEqualTo(move.move());
     }
 }

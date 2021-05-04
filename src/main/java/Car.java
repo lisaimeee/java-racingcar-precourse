@@ -8,7 +8,9 @@ public class Car {
 
     public final String name;
 
-    public int playTurns;
+    private int position;
+
+    private int playTurns;
 
     public Car(String name, int playTurns) {
         isValidName(name);
@@ -24,6 +26,14 @@ public class Car {
 
     public void play() {
         isAbleToPlay();
+    }
+
+    public void move(Movement movement) {
+        this.position += movement.move();
+    }
+
+    public int position() {
+        return position;
     }
 
     private void isAbleToPlay() {
