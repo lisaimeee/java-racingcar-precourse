@@ -13,9 +13,14 @@ public class Car {
     private int playTurns;
 
     public Car(String name, int playTurns) {
+        this(name, playTurns, 0);
+    }
+
+    protected Car(String name, int playTurns, int position) {
         isValidName(name);
         this.name = name;
         this.playTurns = playTurns;
+        this.position = position;
     }
 
     private void isValidName(String name) {
@@ -26,9 +31,11 @@ public class Car {
 
     public void play() {
         isAbleToPlay();
+        playTurns--;
+        move(Movement.of(RandomNumber.random1To9Number()));
     }
 
-    public void move(Movement movement) {
+    protected void move(Movement movement) {
         this.position += movement.move();
     }
 
@@ -41,4 +48,5 @@ public class Car {
             throw new IllegalStateException("더이상 움직일 수 없습니다.");
         }
     }
+
 }
